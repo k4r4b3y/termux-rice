@@ -3,7 +3,7 @@ My rice of the android termux environment
 
 Copy and paste the following in your termux window:
 
-`sh -c "$(curl -fsSL https://github.com/k4r4b3y/termux-rice/raw/main/src/script)"`
+`sh -c "$(curl -fsSL https://github.com/k4r4b3y/termux-rice/raw/src/script)"`
 
 ```
 █████████████████████████████████████████████
