@@ -84,3 +84,41 @@ GPG_TTY=\$(tty)
 export GPG_TTY
 
 EOF
+
+cat << EOF > ${ZDOTDIR}/.zshrc
+#!/data/data/com.termux/files/usr/bin/sh
+# \${ZDOTDIR}/.zshrc
+
+# ---OPTS---
+# some useful options (man zshoptions)
+setopt autocd extendedglob nomatch menucomplete
+setopt interactive_comments
+setopt hist_expire_dups_first hist_ignore_dups hist_verify
+setopt numericglobsort magicequalsubst
+setopt promptsubst
+setopt printexitvalue
+
+# use zsh dir stack
+# you can see your stack with `dirs -v`
+# change to a numbered dir with `ch +\${index}`
+setopt auto_pushd pushd_ignore_dups pushd_silent
+
+# ---SOURCES---
+# completions
+[ -f \${ZDOTDIR}/zsh_completions ] && source \${ZDOTDIR}/zsh_completions
+
+# prompt
+[ -f \${ZDOTDIR}/zsh_prompt ] && source \${ZDOTDIR}/zsh_prompt
+
+# useful aliases
+[ -f \${ZDOTDIR}/zsh_aliases ] && source \${ZDOTDIR}/zsh_aliases
+
+# keybindings
+[ -f \${ZDOTDIR}/zsh_keybindings ] && source \${ZDOTDIR}/zsh_keybindings
+
+# enable syntax highligting from debian repos
+[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# enable autosuggestions from debian repos
+[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+EOF
