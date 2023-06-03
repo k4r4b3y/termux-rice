@@ -37,18 +37,7 @@ mkdir -p ${XDG_CACHE_HOME}
 mkdir -p ${XDG_CONFIG_HOME}
 mkdir -p ${ZDOTDIR}
 
-# TODO:
-# 1. add your modifications to the ${PREFIX}/etc/tor/torrc file
-#    and create the ${PREFIX}/var/lib/tor/ssh folder, or the folder
-#    you named in your torrc file
-# 2. start sshd, tor using sv ?  I need to remember how I was
-#    adding those as services to termux-services
-# 3. add your zsh related files to ~/.config/zsh
-# 4. and I guess that's it after that??
-# 5. chsh -s zsh
-
 # create the zshell config files:
-
 cat << EOF > ${ZDOTDIR}/.zshenv
 # \${ZDOTDIR}/.zshenv
 
@@ -410,3 +399,21 @@ bind-key -T copy-mode-vi y  send-keys -X copy-pipe-and-cancel "xclip -sel clip -
 # pastes from buffer into tmux window
 bind C-v run "tmux set-buffer \"\$(xclip -sel clip -o)\"; tmux paste-buffer"
 EOF
+
+# TODO:
+# 1. add your modifications to the ${PREFIX}/etc/tor/torrc file
+#    and create the ${PREFIX}/var/lib/tor/ssh folder, or the folder
+#    you named in your torrc file
+# 2. start sshd, tor using sv ?  I need to remember how I was
+#    adding those as services to termux-services
+
+sv-enable sshd
+
+cat << EOF >> ${PREFIX}/etc/tor/torrc
+SOCKSPort 9055 
+HiddenServiceDir /data/data/com.termux/files/usr/var/lib/tor/ssh/
+HiddenServicePort 22 127.0.0.1:8022
+EOF
+
+mkdir -p /data/data/com.termux/files/usr/var/lib/tor/ssh/
+sv-enable tor
