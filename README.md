@@ -5,6 +5,7 @@ Copy and paste the following in your termux window:
 
 `sh -c "$(curl -fsSL https://github.com/k4r4b3y/termux-rice/raw/main/src/script)"`
 
+```
 █████████████████████████████████████████████
 █████████████████████████████████████████████
 ████ ▄▄▄▄▄ █ ▀▀▄ ▀▀▄  ██▀█ ██▄▀███ ▄▄▄▄▄ ████
@@ -28,4 +29,4 @@ Copy and paste the following in your termux window:
 ████▄▄▄▄▄▄▄█▄█▄▄▄▄█▄███▄███▄████▄▄▄██▄██▄████
 █████████████████████████████████████████████
 █████████████████████████████████████████████
-
+```
