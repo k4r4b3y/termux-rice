@@ -139,8 +139,6 @@ alias ytt="yt --skip-download --write-thumbnail"
 alias yg='bash -c "\$(curl -fsSL https://github.com/k4r4b3y/yolgezer/raw/main/src/install-monerod-in-termux.sh)"'
 EOF
 
-#cat << EOF > ${ZDOTDIR}/zsh_completions
-#cat << EOF > ${HOME}/.config/zsh/zsh_completions
 cat << EOF > ${ZDOTDIR}/zsh_completions
 # \${ZDOTDIR}/zsh_completions
 
@@ -163,7 +161,7 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' use-compctl true
 zstyle ':completion:*' verbose true
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' list-colors "\${(s.:.)LS_COLORS}"
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # https://reddi.tk/r/zsh/comments/w9r0a7/tab_autocompletion_dont_work_on_environment/
 zstyle ':completion:*' fake-parameters PREFIX
