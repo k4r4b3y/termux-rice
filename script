@@ -139,7 +139,8 @@ alias ytt="yt --skip-download --write-thumbnail"
 alias yg='bash -c "\$(curl -fsSL https://github.com/k4r4b3y/yolgezer/raw/main/src/install-monerod-in-termux.sh)"'
 EOF
 
-cat << EOF > ${ZDOTDIR}/zsh_completions
+#cat << EOF > ${ZDOTDIR}/zsh_completions
+cat << EOF > ${HOME}/.config/zsh/zsh_completions
 # \${ZDOTDIR}/zsh_completions
 
 zstyle ':completion:*' auto-description 'specify: %d'
