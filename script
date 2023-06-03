@@ -120,3 +120,171 @@ setopt auto_pushd pushd_ignore_dups pushd_silent
 # enable autosuggestions from debian repos
 [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 EOF
+
+cat << EOF > ${ZDOTDIR}/zsh_aliases
+# \${ZDOTDIR}/zsh_aliases
+
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+alias diff="diff --color=auto"
+alias ip="ip -color=auto"
+alias ls="ls -hN --color=auto --group-directories-first"
+alias l="ls -la"
+
+alias yt='yt-dlp --embed-metadata --ignore-errors --proxy "socks5://127.0.0.1:9050" --prefer-free-formats --restrict-filenames --format "((bestvideo[height<=?1080][vcodec^=vp9]/bestvideo)+(bestaudio[acodec=opus]/bestaudio[acodec=vorbis]/bestaudio[acodec=aac]/bestaudio))/best"'
+alias yta='yt --extract-audio --audio-format "opus"'
+alias ytt="yt --skip-download --write-thumbnail"
+
+alias yg='bash -c "\$(curl -fsSL https://github.com/k4r4b3y/yolgezer/raw/main/src/install-monerod-in-termux.sh)"'
+EOF
+
+cat << EOF > ${ZDOTDIR}/zsh_completions
+# \${ZDOTDIR}/zsh_completions
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' file-sort name
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' ignore-parents 'parent pwd directory'
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select=1
+zstyle ':completion:*' original true
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' use-compctl true
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+# https://reddi.tk/r/zsh/comments/w9r0a7/tab_autocompletion_dont_work_on_environment/
+zstyle ':completion:*' fake-parameters PREFIX
+
+autoload -Uz compinit
+zmodload zsh/complist
+compinit -u -d ${XDG_CACHE_HOME}/.zcompdump
+#_comp_options+=(globdots)
+EOF
+
+cat << EOF > ${ZDOTDIR}/zsh_keybindings
+# \${ZDOTDIR}/zsh_keybindings
+
+# ^  - Represent the CTRL key. For example: ^c for CTRL+c.
+# \e - Represent the ALT key. For example: \ec for ALT+c.
+
+# enable vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# standard keys
+bindkey -M viins '^A' beginning-of-line
+bindkey -M viins '^B' backward-char
+bindkey -M viins '^D' delete-char-or-list
+bindkey -M viins '^E' end-of-line
+bindkey -M viins '^F' forward-char
+bindkey -M viins '^H' backward-delete-char
+bindkey -M viins '^J' accept-search 2>/dev/null
+bindkey -M viins '^K' kill-line
+bindkey -M viins '^L' clear-screen
+bindkey -M viins '^M' accept-line
+bindkey -M viins '^N' down-line-or-history
+bindkey -M viins '^P' up-line-or-history
+bindkey -M viins '^R' history-incremental-search-backward
+bindkey -M viins '^S' history-incremental-search-forward
+bindkey -M viins '^T' transpose-chars
+bindkey -M viins '^U' backward-kill-line
+bindkey -M viins '^W' backward-kill-word
+bindkey -M viins '^Y' yank
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^_' undo
+bindkey -M viins ' ' magic-space
+
+# move words with control and arrow keys
+bindkey -M viins '^[[1;5D' backward-word
+bindkey -M viins '^[[1;5C' forward-word
+
+# use Ctrl + a to increase a number on cli
+autoload -Uz incarg
+zle -N incarg
+bindkey -M vicmd '^A' incarg
+
+# completion menu vi-keys nav
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
+# Change cursor shape for different vi modes.
+zle-keymap-select zle-line-init() {
+  # Check ~/.st/config.h for the cursor escape sequences.
+  case \$KEYMAP in
+    vicmd)      print -n -- "\e[2 q";;
+    viins|main) print -n -- "\e[5 q";;
+  esac
+
+  zle reset-prompt
+  zle -R
+}
+
+zle-line-finish() {
+  print -n -- "\e[2 q"
+}
+
+zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
+
+# when in command mode hit Ctrl + v to edit the command line
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd '^v' edit-command-line
+EOF
+
+cat << EOF > ${ZDOTDIR}/zsh_prompt
+# \${ZDOTDIR}/zsh_prompt
+
+# autoload vcs and colors
+autoload -Uz vcs_info
+autoload -U colors && colors
+
+# enable only git 
+zstyle ':vcs_info:*' enable git 
+
+# setup a hook that runs before every ptompt. 
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
+# add a function to check for untracked files in the directory.
+# from https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+# 
++vi-git-untracked(){
+    if [[ \$(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        # This will show the marker if there are any untracked files in repo.
+        # If instead you want to show the marker only if there are untracked
+        # files in \$PWD, use:
+        #[[ -n \$(git ls-files --others --exclude-standard) ]] ; then
+        hook_com[staged]+='!' # signify new files with a bang
+    fi
+}
+
+zstyle ':vcs_info:*' check-for-changes true
+# zstyle ':vcs_info:git:*' formats " %r/%S %b %m%u%c "
+zstyle ':vcs_info:git:*' formats " %{\$fg[blue]%}(%{\$fg[red]%}%m%u%c%{\$fg[yellow]%}%{\$fg[magenta]%} %b%{\$fg[blue]%})"
+
+# format our main prompt for hostname current folder, and permissions.
+PROMPT="%B%{\$fg[blue]%}[%{\$fg[white]%}%n%{\$fg[red]%}@%{\$fg[white]%}%m%{\$fg[blue]%}]%{\$fg_bold[red]%}:%{\$fg[cyan]%}%~ %{\$reset_color%}%#"
+#PROMPT="%{\$fg[green]%}%n@%m:%~ %{\$reset_color%}%# "
+PROMPT+="\$vcs_info_msg_0_ "
+# TODO look into this for more colors
+# https://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
+# also ascii escape codes
+EOF
