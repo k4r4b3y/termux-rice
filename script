@@ -99,8 +99,6 @@ setopt promptsubst
 setopt printexitvalue
 
 # use zsh dir stack
-# you can see your stack with \`dirs -v\`
-# change to a numbered dir with \`ch +\${index}\`
 setopt auto_pushd pushd_ignore_dups pushd_silent
 
 # ---SOURCES---
