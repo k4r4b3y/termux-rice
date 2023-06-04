@@ -20,6 +20,7 @@ mypacks="apt attr bash-completion bash binutils-bin binutils-libs \
 
 pkg install -y $(echo ${mypacks})
 
+mkdir -p ${HOME}/.local/bin
 # define the xdg dirs
 cat << EOF >> ${PREFIX}/etc/profile
 # set PATH so it includes user's private bin if it exists
@@ -426,7 +427,6 @@ sv-enable tor
 python -m pip install --user pipx
 
 # install yt-dlp and ytfzf
-. ${PREFIX}/etc/profile
 pipx install yt-dlp
 
 # create ytfzf config file
