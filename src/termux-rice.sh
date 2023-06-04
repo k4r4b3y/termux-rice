@@ -412,8 +412,8 @@ mkdir -p /data/data/com.termux/files/usr/var/lib/tor/ssh/
 sv-enable tor
 
 # install python and pipx
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
+python -m pip install --user pipx
+python -m pipx ensurepath
 
 # install yt-dlp and ytfzf
 pipx install yt-dlp
