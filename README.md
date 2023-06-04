@@ -27,7 +27,7 @@ sh -c "$(curl -fsSL https://github.com/k4r4b3y/termux-rice/raw/main/src/termux-r
 
 <center> 
 <figure>
-<img src="pics/qr-code.webp" width="400">
+<img src="pics/qr-code.webp" width="200">
 <figcaption>Scan to copy the oneliner to paste in your termux!</figcaption>
 </figure>
 </center>
