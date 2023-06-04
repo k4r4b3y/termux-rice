@@ -1,6 +1,16 @@
 # termux-rice
 My rice of the android termux environment
 
+Tips (XMR):
+```
+85qdAJqpHWTFPR2FnJQJY5MxMYzQh58apd9PbiSgKGjAMy9Mx5VGp1yS5r83S8c1p7hiCFH2uE3m8bAr5PxrGHNm63PReuP
+```
+<center> 
+<figure>
+<img src="pics/xmrqr.webp" width="50">
+</figure>
+</center>
+
 ## Features
 - zshell setup with completions and user prompt setup
 - tmux setup with comfy config (Ctrl + a , instead of Ctrl + b)
