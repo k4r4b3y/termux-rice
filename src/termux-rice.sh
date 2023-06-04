@@ -16,19 +16,30 @@ mypacks="apt attr bash-completion bash binutils-bin binutils-libs \
          termux-am-socket termux-am termux-api termux-auth termux-exec \
          termux-keyring termux-licenses termux-services termux-tools tmux \
          tor torsocks tree unbound unzip util-linux vim-runtime vim wget \
-         xxhash xz-utils zlib zsh-completions zsh zstd"
+         xxhash xz-utils ytfzf zlib zsh-completions zsh zstd"
 
 pkg install -y $(echo ${mypacks})
 
 # define the xdg dirs
-echo "# XDG Paths
+cat << EOF >> ${PREFIX}/etc/profile
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# XDG Paths
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
 
 # zsh config dir
 export ZDOTDIR="${HOME}/.config/zsh"
-" >> ${PREFIX}/etc/profile
+EOF
 
 . ${PREFIX}/etc/profile
 
@@ -417,7 +428,6 @@ python -m pipx ensurepath
 
 # install yt-dlp and ytfzf
 pipx install yt-dlp
-pkg install -y ytfzf
 
 # create ytfzf config file
 mkdir -p ${XDG_CONFIG_HOME}/ytfzf
