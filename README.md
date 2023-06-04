@@ -7,7 +7,7 @@ Tips (XMR):
 ```
 <center> 
 <figure>
-<img src="pics/xmrqr.webp" width="100">
+<img src="pics/xmrqr.webp" width="150">
 </figure>
 </center>
 
@@ -27,7 +27,7 @@ sh -c "$(curl -fsSL https://github.com/k4r4b3y/termux-rice/raw/main/src/termux-r
 
 <center> 
 <figure>
-<img src="pics/qr-code.webp" width="200">
+<img src="pics/qr-code.webp" width="300">
 <figcaption>Scan to copy the oneliner to paste in your termux!</figcaption>
 </figure>
 </center>
