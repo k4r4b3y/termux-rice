@@ -439,5 +439,4 @@ audio_pref="((bestaudio[acodec=opus]/bestaudio[acodec=vorbis]/bestaudio[acodec=a
 EOF
 
 # symlink yt-dlp to youtube-dl so ytfzf doesn't complain
-touch ${PREFIX}/bin/youtube-dl
-ln -s $(whereis yt-dlp) ${PREFIX}/bin/youtube-dl
+ln -s "$(whereis yt-dlp)" "${PREFIX}/bin/youtube-dl"
