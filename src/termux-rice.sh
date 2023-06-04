@@ -417,7 +417,7 @@ python -m pipx ensurepath
 
 # install yt-dlp and ytfzf
 pipx install yt-dlp
-pkg install ytfzf -y
+pkg install -y ytfzf
 
 # create ytfzf config file
 mkdir -p ${XDG_CONFIG_HOME}/ytfzf
