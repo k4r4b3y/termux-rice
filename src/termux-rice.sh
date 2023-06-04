@@ -4,7 +4,7 @@ pkg upgrade -y -o Dpkg::Options::=--force-confnew
 
 mypacks="apt attr bash-completion bash binutils-bin binutils-libs \
          bzip2 ca-certificates command-not-found coreutils curl dash \
-         debianutils dialog diffutils dos2unix dpkg ed file findutils \
+         debianutils dialog diffutils dos2unix dpkg ed file findutils ffmpeg \
          gawk gpgv grep gzip inetutils jq krb5 ldd ldns less libandroid-glob \
          libandroid-support libassuan libbz2 libc++ libcap-ng libcap libcrypt \
          libcurl libdb libedit libevent libexpat libgcrypt libgmp libgnutls \
@@ -12,7 +12,7 @@ mypacks="apt attr bash-completion bash binutils-bin binutils-libs \
          libnghttp2 libnpth libpopt libqrencode libresolv-wrapper libsmartcols \
          libssh2 libtirpc libunistring libuuid lsof man nano ncurses net-tools \
          oniguruma openssh-sftp-server openssh openssl-tool openssl patch pcre2 \
-         pcre procps psmisc readline resolv-conf rsync runit sed tar \
+         pcre procps psmisc python python-pip readline resolv-conf rsync runit sed tar \
          termux-am-socket termux-am termux-api termux-auth termux-exec \
          termux-keyring termux-licenses termux-services termux-tools tmux \
          tor torsocks tree unbound unzip util-linux vim-runtime vim wget \
@@ -410,3 +410,12 @@ EOF
 
 mkdir -p /data/data/com.termux/files/usr/var/lib/tor/ssh/
 sv-enable tor
+
+# install python and pipx
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+
+# install yt-dlp and ytfzf
+pipx install yt-dlp
+pkg install ytfzf
+
