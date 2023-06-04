@@ -23,22 +23,22 @@ pkg install -y $(echo ${mypacks})
 # define the xdg dirs
 cat << EOF >> ${PREFIX}/etc/profile
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "\$HOME/bin" ] ; then
+    PATH="\$HOME/bin:\$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+if [ -d "\$HOME/.local/bin" ] ; then
+    PATH="\$HOME/.local/bin:\$PATH"
 fi
 
 # XDG Paths
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CONFIG_HOME="\${HOME}/.config"
+export XDG_CACHE_HOME="\${HOME}/.cache"
+export XDG_DATA_HOME="\${HOME}/.local/share"
 
 # zsh config dir
-export ZDOTDIR="${HOME}/.config/zsh"
+export ZDOTDIR="\${HOME}/.config/zsh"
 EOF
 
 . ${PREFIX}/etc/profile
@@ -424,7 +424,6 @@ sv-enable tor
 
 # install python and pipx
 python -m pip install --user pipx
-python -m pipx ensurepath
 
 # install yt-dlp and ytfzf
 pipx install yt-dlp
@@ -436,3 +435,6 @@ ytdl_opts='--embed-metadata --ignore-errors --prefer-free-formats --restrict-fil
 video_pref="((bestvideo[height<=?1080][vcodec^=vp9]/bestvideo))"
 audio_pref="((bestaudio[acodec=opus]/bestaudio[acodec=vorbis]/bestaudio[acodec=aac]/bestaudio))"
 EOF
+
+# symlink yt-dlp to youtube-dl so ytfzf doesn't complain
+ln -s $(whereis yt-dlp) ${PREFIX}/bin/youtube-dl
