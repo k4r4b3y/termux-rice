@@ -131,7 +131,7 @@ alias ip="ip -color=auto"
 alias ls="ls -hN --color=auto --group-directories-first"
 alias l="ls -la"
 
-alias yt='yt-dlp --embed-metadata --ignore-errors --proxy "socks5://127.0.0.1:9055" --prefer-free-formats --restrict-filenames --format "((bestvideo[height<=?1080][vcodec^=vp9]/bestvideo)+(bestaudio[acodec=opus]/bestaudio[acodec=vorbis]/bestaudio[acodec=aac]/bestaudio))/best"'
+alias yt='yt-dlp --embed-metadata --ignore-errors --proxy "socks5://127.0.0.1:9055" --paths \${HOME}/storage/downloads/ytdlp --prefer-free-formats --restrict-filenames --format "((bestvideo[height<=?1080][vcodec^=vp9]/bestvideo)+(bestaudio[acodec=opus]/bestaudio[acodec=vorbis]/bestaudio[acodec=aac]/bestaudio))/best"'
 alias yta='yt --extract-audio --audio-format "opus"'
 alias ytt="yt --skip-download --write-thumbnail"
 
@@ -443,3 +443,7 @@ ln -s "$(whereis yt-dlp)" "${PREFIX}/bin/youtube-dl"
 
 # setup internal storage
 termux-setup-storage
+
+echo "RICE SETUP FINISHED."
+echo "Exiting the shell in 5 seconds..."
+sleep 5 && exit
