@@ -419,3 +419,9 @@ python -m pipx ensurepath
 pipx install yt-dlp
 pkg install ytfzf
 
+# create ytfzf config file
+cat << EOF > ${XDG_CONFIG_HOME}/ytfzf/conf.sh
+ytdl_opts='--embed-metadata --ignore-errors --prefer-free-formats --restrict-filenames --proxy socks5://127.0.0.1:9055 --format ""bestvideo[height<=?1080][vcodec^=vp9]+bestaudio/best""'
+video_pref="((bestvideo[height<=?1080][vcodec^=vp9]/bestvideo))"
+audio_pref="((bestaudio[acodec=opus]/bestaudio[acodec=vorbis]/bestaudio[acodec=aac]/bestaudio))"
+EOF
