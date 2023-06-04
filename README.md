@@ -7,7 +7,7 @@ Tips (XMR):
 ```
 <center> 
 <figure>
-<img src="pics/xmrqr.webp" width="50">
+<img src="pics/xmrqr.webp" width="100">
 </figure>
 </center>
 
