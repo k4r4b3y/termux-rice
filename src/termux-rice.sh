@@ -20,6 +20,7 @@ mypacks="apt attr bash-completion bash binutils-bin binutils-libs \
 
 pkg install -y $(echo ${mypacks})
 
+# Create this dir in order to add it to the $PATH
 mkdir -p ${HOME}/.local/bin
 # define the xdg dirs
 cat << EOF >> ${PREFIX}/etc/profile
