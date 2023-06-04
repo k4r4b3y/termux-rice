@@ -433,10 +433,13 @@ pipx install yt-dlp
 # create ytfzf config file
 mkdir -p ${XDG_CONFIG_HOME}/ytfzf
 cat << EOF > ${XDG_CONFIG_HOME}/ytfzf/conf.sh
-ytdl_opts='--embed-metadata --ignore-errors --prefer-free-formats --restrict-filenames --proxy socks5://127.0.0.1:9055 --format ""bestvideo[height<=?1080][vcodec^=vp9]+bestaudio/best""'
+ytdl_opts='--embed-metadata --ignore-errors --prefer-free-formats --restrict-filenames --paths \${HOME}/storage/downloads/ytdlp --proxy socks5://127.0.0.1:9055 --format ""bestvideo[height<=?1080][vcodec^=vp9]+bestaudio/best""'
 video_pref="((bestvideo[height<=?1080][vcodec^=vp9]/bestvideo))"
 audio_pref="((bestaudio[acodec=opus]/bestaudio[acodec=vorbis]/bestaudio[acodec=aac]/bestaudio))"
 EOF
 
 # symlink yt-dlp to youtube-dl so ytfzf doesn't complain
 ln -s "$(whereis yt-dlp)" "${PREFIX}/bin/youtube-dl"
+
+# setup internal storage
+termux-setup-storage
