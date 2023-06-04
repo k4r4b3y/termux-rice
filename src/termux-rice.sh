@@ -426,6 +426,7 @@ sv-enable tor
 python -m pip install --user pipx
 
 # install yt-dlp and ytfzf
+. ${PREFIX}/etc/profile
 pipx install yt-dlp
 
 # create ytfzf config file
