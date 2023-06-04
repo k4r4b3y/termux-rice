@@ -400,13 +400,6 @@ bind-key -T copy-mode-vi y  send-keys -X copy-pipe-and-cancel "xclip -sel clip -
 bind C-v run "tmux set-buffer \"\$(xclip -sel clip -o)\"; tmux paste-buffer"
 EOF
 
-# TODO:
-# 1. add your modifications to the ${PREFIX}/etc/tor/torrc file
-#    and create the ${PREFIX}/var/lib/tor/ssh folder, or the folder
-#    you named in your torrc file
-# 2. start sshd, tor using sv ?  I need to remember how I was
-#    adding those as services to termux-services
-
 sv-enable sshd
 
 cat << EOF >> ${PREFIX}/etc/tor/torrc
