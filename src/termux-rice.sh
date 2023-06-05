@@ -413,6 +413,17 @@ bind-key -T copy-mode-vi y  send-keys -X copy-pipe-and-cancel "xclip -sel clip -
 bind C-v run "tmux set-buffer \"\$(xclip -sel clip -o)\"; tmux paste-buffer"
 EOF
 
+# Change PasswordAuthentication yes to PasswordAuthentication no in sshd_config
+sed -i 's/^PasswordAuthentication yes$/PasswordAuthentication no/' ${PREFIX}/etc/ssh/sshd_config
+
+cat << EOF >> ${PREFIX}/etc/ssh/sshd_config
+PermitRootLogin no
+
+Ciphers -aes128-ctr,aes192-ctr,aes128-gcm@openssh.com
+KexAlgorithms ecdh-sha2-nistp384
+MACs -hmac-sha1-etm@openssh.com,hmac-sha1,umac-64-etm@openssh.com,umac-64@openssh.com,umac-128-etm@openssh.com,umac-128@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-256
+EOF
+
 sv-enable sshd
 
 cat << EOF >> ${PREFIX}/etc/tor/torrc
