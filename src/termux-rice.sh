@@ -34,6 +34,7 @@ export ZDOTDIR="\${HOME}/.config/zsh"
 EOF
 
 . ${PREFIX}/etc/profile
+export PATH=\${HOME}/.local/bin:\$PATH
 
 mkdir -p ${XDG_DATA_HOME}
 mkdir -p ${XDG_CACHE_HOME}
@@ -430,7 +431,6 @@ sv-enable tor
 
 # install python and pipx
 python -m pip install --user pipx
-python -m pipx ensurepath
 
 # install yt-dlp and ytfzf
 pipx install yt-dlp
