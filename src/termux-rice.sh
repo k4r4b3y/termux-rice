@@ -24,16 +24,6 @@ pkg install -y $(echo ${mypacks})
 mkdir -p ${HOME}/.local/bin
 # define the xdg dirs
 cat << EOF >> ${PREFIX}/etc/profile
-# set PATH so it includes user's private bin if it exists
-if [ -d "\$HOME/bin" ] ; then
-    PATH="\$HOME/bin:\$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "\$HOME/.local/bin" ] ; then
-    PATH="\$HOME/.local/bin:\$PATH"
-fi
-
 # XDG Paths
 export XDG_CONFIG_HOME="\${HOME}/.config"
 export XDG_CACHE_HOME="\${HOME}/.cache"
@@ -53,6 +43,9 @@ mkdir -p ${ZDOTDIR}
 # create the zshell config files:
 cat << EOF > ${ZDOTDIR}/.zshenv
 # \${ZDOTDIR}/.zshenv
+
+# path
+[ -d "\$HOME/.local/bin" ] && export PATH=\${HOME}/.local/bin:\$PATH
 
 # zsh history
 export HISTFILE="\${XDG_DATA_HOME}/.zhistory"
