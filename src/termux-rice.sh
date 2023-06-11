@@ -45,6 +45,9 @@ mkdir -p ${ZDOTDIR}
 cat << EOF > ${ZDOTDIR}/.zshenv
 # \${ZDOTDIR}/.zshenv
 
+# path
+[ -d "\$HOME/.local/bin" ] && export PATH=\${HOME}/.local/bin:\$PATH
+
 # zsh history
 export HISTFILE="\${XDG_DATA_HOME}/.zhistory"
 export HISTSIZE=10000
@@ -78,9 +81,6 @@ EOF
 cat << EOF > ${ZDOTDIR}/.zshrc
 #!/data/data/com.termux/files/usr/bin/sh
 # \${ZDOTDIR}/.zshrc
-
-# path
-[ -d "\$HOME/.local/bin" ] && export PATH=\${HOME}/.local/bin:\$PATH
 
 # ---OPTS---
 # some useful options (man zshoptions)
