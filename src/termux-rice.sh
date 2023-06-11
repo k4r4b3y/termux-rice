@@ -34,7 +34,7 @@ export ZDOTDIR="\${HOME}/.config/zsh"
 EOF
 
 . ${PREFIX}/etc/profile
-export PATH=\${HOME}/.local/bin:\$PATH
+export PATH=${HOME}/.local/bin:$PATH
 
 mkdir -p ${XDG_DATA_HOME}
 mkdir -p ${XDG_CACHE_HOME}
