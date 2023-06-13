@@ -429,6 +429,31 @@ EOF
 mkdir -p /data/data/com.termux/files/usr/var/lib/tor/ssh/
 sv-enable tor
 
+# add i2pd runit scripts
+mkdir -p ${XDG_CONFIG_HOME}/sv/i2pd
+cat << EOF > ${XDG_CONFIG_HOME}/sv/i2pd/run
+#!/data/data/com.termux/files/usr/bin/sh
+exec 2>&1
+ulimit -n \${MAX_OPEN_FILES:-16384}
+exec i2pd --service --conf=\${PREFIX}/etc/i2pd/i2pd.conf --tunconf=\${PREFIX}/etc/i2pd/tunnels.conf
+EOF
+
+chmod +x ${XDG_CONFIG_HOME}/sv/i2pd/run
+
+mkdir -p ${XDG_CONFIG_HOME}/sv/i2pd/log
+cat << EOF > ${XDG_CONFIG_HOME}/sv/i2pd/log/run
+#!/data/data/com.termux/files/usr/bin/sh
+svlogger="/data/data/com.termux/files/usr/share/termux-services/svlogger"
+exec "\${svlogger}" "\$@"
+EOF
+
+chmod +x ${XDG_CONFIG_HOME}/sv/i2pd/log/run
+
+touch chmod +x ${XDG_CONFIG_HOME}/sv/i2pd/down
+ln -s ${XDG_CONFIG_HOME}/sv/i2pd ${PREFIX}/var/service/
+# in order to enable i2pd just issue 
+# `sv-enable i2pd` command
+
 # install python and pipx
 python -m pip install --user pipx
 
