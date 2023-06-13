@@ -454,6 +454,11 @@ ln -s ${XDG_CONFIG_HOME}/sv/i2pd ${PREFIX}/var/service/
 # in order to enable i2pd just issue 
 # `sv-enable i2pd` command
 
+# link the i2pd.conf and tunnels.conf files 
+mkdir -p ${PREFIX}/var/lib/i2pd
+ln -s ${PREIX}/etc/i2pd/i2pd.conf ${PREFIX}/var/lib/i2pd/
+ln -s ${PREIX}/etc/i2pd/tunnels.conf ${PREFIX}/var/lib/i2pd/
+
 # install python and pipx
 python -m pip install --user pipx
 
