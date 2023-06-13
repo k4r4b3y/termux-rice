@@ -15,7 +15,7 @@ mypacks="apt attr bash-completion bash binutils-bin binutils-libs \
          pcre procps psmisc python python-pip readline resolv-conf rsync runit sed tar \
          termux-am-socket termux-am termux-api termux-auth termux-exec \
          termux-keyring termux-licenses termux-services termux-tools tmux \
-         tor torsocks tree unbound unzip util-linux vim-runtime vim wget \
+         tor torsocks tree unbound unzip util-linux vim-runtime vim w3m wget \
          xxhash xz-utils ytfzf zlib zsh-completions zsh zstd"
 
 pkg install -y $(echo ${mypacks})
