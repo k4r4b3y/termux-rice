@@ -435,7 +435,7 @@ cat << EOF > ${XDG_CONFIG_HOME}/sv/i2pd/run
 #!/data/data/com.termux/files/usr/bin/sh
 exec 2>&1
 ulimit -n \${MAX_OPEN_FILES:-16384}
-exec i2pd --service --conf=\${PREFIX}/etc/i2pd/i2pd.conf --tunconf=\${PREFIX}/etc/i2pd/tunnels.conf
+exec i2pd --service
 EOF
 
 chmod +x ${XDG_CONFIG_HOME}/sv/i2pd/run
