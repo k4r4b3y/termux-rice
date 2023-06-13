@@ -449,7 +449,7 @@ EOF
 
 chmod +x ${XDG_CONFIG_HOME}/sv/i2pd/log/run
 
-touch chmod +x ${XDG_CONFIG_HOME}/sv/i2pd/down
+touch ${XDG_CONFIG_HOME}/sv/i2pd/down
 ln -s ${XDG_CONFIG_HOME}/sv/i2pd ${PREFIX}/var/service/
 # in order to enable i2pd just issue 
 # `sv-enable i2pd` command
