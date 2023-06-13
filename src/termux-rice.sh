@@ -435,7 +435,7 @@ cat << EOF > ${XDG_CONFIG_HOME}/sv/i2pd/run
 #!/data/data/com.termux/files/usr/bin/sh
 exec 2>&1
 ulimit -n \${MAX_OPEN_FILES:-16384}
-exec i2pd
+exec i2pd --service --conf=/data/data/com.termux/files/usr/etc/i2pd/i2pd.conf --tunconf=/data/data/com.termux/files/usr/etc/i2pd/tunnels.conf
 EOF
 
 chmod +x ${XDG_CONFIG_HOME}/sv/i2pd/run
@@ -453,11 +453,6 @@ touch ${XDG_CONFIG_HOME}/sv/i2pd/down
 ln -s ${XDG_CONFIG_HOME}/sv/i2pd ${PREFIX}/var/service/
 # in order to enable i2pd just issue 
 # `sv-enable i2pd` command
-
-# link the i2pd.conf and tunnels.conf files 
-mkdir -p ${HOME}/.i2pd/
-ln -s ${PREFIX}/etc/i2pd/i2pd.conf ${HOME}/.i2pd/
-ln -s ${PREFIX}/etc/i2pd/tunnels.conf ${HOME}/.i2pd/
 
 # install python and pipx
 python -m pip install --user pipx
