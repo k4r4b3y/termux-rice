@@ -435,7 +435,7 @@ cat << EOF > ${XDG_CONFIG_HOME}/sv/i2pd/run
 #!/data/data/com.termux/files/usr/bin/sh
 exec 2>&1
 ulimit -n \${MAX_OPEN_FILES:-16384}
-exec i2pd --service --conf=/data/data/com.termux/files/usr/etc/i2pd/i2pd.conf --tunconf=/data/data/com.termux/files/usr/etc/i2pd/tunnels.conf
+exec i2pd --service 
 EOF
 
 chmod +x ${XDG_CONFIG_HOME}/sv/i2pd/run
@@ -451,6 +451,20 @@ chmod +x ${XDG_CONFIG_HOME}/sv/i2pd/log/run
 
 touch ${XDG_CONFIG_HOME}/sv/i2pd/down
 ln -s ${XDG_CONFIG_HOME}/sv/i2pd ${PREFIX}/var/service/
+
+sv-enable i2pd
+
+sleep 10
+
+ln -s ${PREFIX}/etc/i2pd/i2pd.conf ${PREFIX}/var/lib/i2pd/
+ln -s ${PREFIX}/etc/i2pd/tunnels.conf ${PREFIX}/var/lib/i2pd/
+
+sv restart i2pd
+
+sleep 5
+
+sv-disable i2pd
+
 # in order to enable i2pd just issue 
 # `sv-enable i2pd` command
 
