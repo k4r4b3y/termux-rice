@@ -459,8 +459,6 @@ sleep 10
 ln -s ${PREFIX}/etc/i2pd/i2pd.conf ${PREFIX}/var/lib/i2pd/
 ln -s ${PREFIX}/etc/i2pd/tunnels.conf ${PREFIX}/var/lib/i2pd/
 
-sv restart i2pd
-
 sleep 5
 
 sv-disable i2pd
