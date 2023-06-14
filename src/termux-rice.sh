@@ -451,13 +451,8 @@ chmod +x ${XDG_CONFIG_HOME}/sv/i2pd/log/run
 
 ln -s ${XDG_CONFIG_HOME}/sv/i2pd ${PREFIX}/var/service/
 
-sleep 15
-
 ln -s ${PREFIX}/etc/i2pd/i2pd.conf ${PREFIX}/var/lib/i2pd/
 ln -s ${PREFIX}/etc/i2pd/tunnels.conf ${PREFIX}/var/lib/i2pd/
-
-
-sv-disable i2pd
 
 # in order to enable i2pd just issue 
 # `sv-enable i2pd` command
