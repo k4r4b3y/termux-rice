@@ -457,8 +457,11 @@ sleep 5
 ln -s ${PREFIX}/etc/i2pd/i2pd.conf ${PREFIX}/var/lib/i2pd/
 ln -s ${PREFIX}/etc/i2pd/tunnels.conf ${PREFIX}/var/lib/i2pd/
 
-# in order to enable i2pd just issue 
-# `sv-enable i2pd` command
+# let's enable the socks5 proxy port in i2pd
+sed -i '/\[socksproxy\]/a enabled = true\naddress = 127.0.0.1\nport = 4447' ${PREFIX}/etc/i2pd/i2pd.conf
+
+# let's also enable the sam ports
+sed -i '/\[sam\]/a enabled = true\naddress = 127.0.0.1\nport = 7656\nportudp = 7655' ${PREFIX}/etc/i2pd/i2pd.conf
 
 # install python and pipx
 python -m pip install --user pipx
