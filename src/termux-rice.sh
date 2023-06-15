@@ -12,8 +12,8 @@ mypacks="apt attr bash-completion bash binutils-bin binutils-libs \
          libnghttp2 libnpth libpopt libqrencode libresolv-wrapper libsmartcols \
          libssh2 libtirpc libunistring libuuid lsof man nano ncurses net-tools \
          nmap oniguruma openssh-sftp-server openssh openssl-tool openssl patch pcre2 \
-         pcre procps psmisc python python-pip readline resolv-conf rsync runit sed tar \
-         termux-am-socket termux-am termux-api termux-auth termux-exec \
+         pcre procps psmisc python python-pip readline resolv-conf rsync runit sed \
+         speedtest-go tar termux-am-socket termux-am termux-api termux-auth termux-exec \
          termux-keyring termux-licenses termux-services termux-tools tmux \
          tor torsocks tree unbound unzip util-linux vim-runtime vim w3m wget \
          xxhash xz-utils ytfzf zlib zsh-completions zsh zstd"
