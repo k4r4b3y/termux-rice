@@ -5,7 +5,7 @@ pkg upgrade -y -o Dpkg::Options::=--force-confnew
 mypacks="apt attr bash-completion bash binutils-bin binutils-libs \
          bzip2 ca-certificates command-not-found coreutils curl dash \
          debianutils dialog diffutils dos2unix dpkg ed file findutils ffmpeg \
-         gawk gpgv grep gzip i2pd inetutils jq krb5 ldd ldns less libandroid-glob \
+         gawk gpgv grep gzip htop i2pd inetutils jq krb5 ldd ldns less libandroid-glob \
          libandroid-support libassuan libbz2 libc++ libcap-ng libcap libcrypt \
          libcurl libdb libedit libevent libexpat libgcrypt libgmp libgnutls \
          libgpg-error libiconv libidn2 liblz4 liblzma libmd libmpfr libnettle \
